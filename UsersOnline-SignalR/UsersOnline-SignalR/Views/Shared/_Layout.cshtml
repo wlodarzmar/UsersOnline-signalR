@@ -39,6 +39,33 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @if (User.Identity.IsAuthenticated)
+    {
+            <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+            <script src="~/signalr/hubs"></script>
+            <script type="text/javascript">
+
+            $(document).ready(function () {
+                var usersHub = $.connection.usersHub;
+                usersHub.client.usersOnline = function (users) {
+                    
+                    $('div[data-user-name]').each(function (idx, element) {
+
+                        if (users.indexOf($(element).data('user-name')) != -1) {
+                            $(element).addClass('online').removeClass('offline');
+                        }
+                        else {
+                            $(element).addClass('offline').removeClass('online');
+                        }
+                    });
+                };
+
+                $.connection.hub.start();
+            });
+            </script>
+    }
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

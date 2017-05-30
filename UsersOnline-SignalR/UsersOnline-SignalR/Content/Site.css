@@ -22,3 +22,25 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.user {
+    border-bottom: solid 1px #808080;
+}
+
+.log-bulb {
+    width: 20px;
+    height: 10px;
+    background-color: #808080;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.online {
+    background-color: #00bb1b;
+}
+
+.offline {
+    background-color: #d70000;
+}

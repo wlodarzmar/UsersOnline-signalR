@@ -9,6 +9,7 @@ namespace UsersOnline_SignalR
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

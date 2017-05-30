@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UsersOnline_SignalR.Models;
 
 namespace UsersOnline_SignalR.Controllers
 {
@@ -10,7 +11,12 @@ namespace UsersOnline_SignalR.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            HomeIndexViewModel vm = new HomeIndexViewModel();
+            using (var ctx = new ApplicationDbContext())
+            {
+                vm.Users = ctx.Users.ToList();
+            }
+            return View(vm);
         }
 
         public ActionResult About()
